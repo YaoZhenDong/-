@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#can{
+		margin: 20px auto;
+		background: #eee;
+	}
+
+
+	</style>
+</head>
+<body>
+	
+	<canvas id="can" width="500" height="500"></canvas>
+</body>
+</html>
+		<script>
+		//圆
+			var canvas = document.getElementById( "can" );
+			var context = canvas.getContext("2d");
+
+			context.beginPath(); 
+			context.arc( 250,250,200,0,Math.PI*(360/180),false )
+			context.fillStyle = "#FA6702";
+			context.stroke();
+			context.closePath();
+		//小时的刻度
+		context.translate(250,250);
+			context.beginPath();
+			for(var i=0;i<12;i++){
+				context.moveTo(200,0);
+				context.lineTo(180,0);
+				context.rotate(Math.PI/6);
+				context.strokeStyle = "red";
+				context.stroke();
+			} 
+
+			//分钟的刻度
+	
+			context.beginPath();
+			for(var i=0;i<60;i++){
+				context.moveTo(190,0);
+				context.lineTo(195,0);
+				context.rotate(Math.PI/30);
+
+				context.stroke();
+			} 
+			context.closePath()
+
+			//时针刻度数字
+
+				context.fillStyle="#000";
+				context.font="bold 25px Arial";
+				context.textBaseline="middle"
+				context.textAling="center";
+			for(var i=0;i<12;i++){
+
+				var x=180*Math.cos((i-2)*Math.PI/6.1);
+				var y=180*Math.sin((i-2)*Math.PI/6);
+				context.fillText(i+1,x,y);
+			}
+
+
+				
+		
+
+			</script>
